@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N❤️D</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Reset & Body ===== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #3a0008, #8b0000, #ff1493, #ff4d6d);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        /* 🌹 Dark Rose Petals */
+        
+        .petal {
+            position: fixed;
+            top: -10px;
+            font-size: 20px;
+            animation: fall linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+        /* ✨ Magical Sparkles */
+        
+        .sparkle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #fff 0%, #ff4da6 70%);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: sparkleMove linear infinite;
+        }
+        
+        @keyframes sparkleMove {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.5);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(50vh) translateX(20px) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(-20px) scale(0.5);
+                opacity: 0;
+            }
+        }
+        /* ===== Main Card ===== */
+        
+        .container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 10;
+        }
+        /* ===== Card Background Animations ===== */
+        
+        .card-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            /* behind card */
+            overflow: hidden;
+            pointer-events: none;
+        }
+        /* Glowing sparkles behind card */
+        
+        .bg-sparkle {
+            position: absolute;
+            top: -10px;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #fff 0%, #ff4da6 80%);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: bgSparkleMove linear infinite;
+        }
+        
+        @keyframes bgSparkleMove {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(20px) scale(1);
+                opacity: 0;
+            }
+        }
+        /* Lightning flash behind card */
+        
+        .bg-lightning {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transform: translateX(-50%) scale(0);
+            animation: lightningFlash 3s infinite;
+        }
+        
+        @keyframes lightningFlash {
+            0%,
+            70%,
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0);
+            }
+            75% {
+                opacity: 0.5;
+                transform: translateX(-50%) scale(1);
+            }
+            80% {
+                opacity: 0.2;
+                transform: translateX(-50%) scale(1.2);
+            }
+            85% {
+                opacity: 0;
+                transform: translateX(-50%) scale(1.5);
+            }
+        }
+        
+        .card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 1400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff4da6;
+            position: relative;
+            z-index: 20;
+        }
+        
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 20px #ff4da6;
+        }
+        
+        p {
+            margin: 12px 0;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        /* ===== Images ===== */
+        
+        .images {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .images img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            border: 4px solid #ff4da6;
+            box-shadow: 0 0 25px #ff1493;
+            transition: 0.5s;
+        }
+        
+        .images img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 60px #ff4da6;
+        }
+        /* ===== Love Letter Popup ===== */
+        
+        .love-wrapper {
+            margin-top: 25px;
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .love-btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            background: #ff4da6;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 20px #ff1493;
+            transition: 0.3s;
+        }
+        
+        .love-btn:hover {
+            background: #ff1493;
+        }
+        
+        .love-letter {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 360px;
+            background: #f09ddc;
+            color: #4d1a1a;
+            padding: 40px 30px;
+            border-radius: 25px;
+            font-family: 'Parisienne', cursive;
+            font-size: 1.1rem;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(255, 77, 166, 0.7);
+            border: 2px solid #ff4da6;
+            transition: transform 0.5s ease;
+            z-index: 10000;
+        }
+        
+        .love-letter.show {
+            transform: translate(-50%, -50%) scale(1);
+            animation: popLetter 0.6s ease forwards;
+        }
+        
+        @keyframes popLetter {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 18px;
+            height: 18px;
+            background: #ff4da6;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            line-height: 18px;
+        }
+        
+        .love-letter .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatHeart 2s ease-in-out forwards;
+        }
+        
+        .love-letter .heart:nth-child(1) {
+            left: 10%;
+            animation-delay: 0.1s;
+        }
+        
+        .love-letter .heart:nth-child(2) {
+            left: 40%;
+            animation-delay: 0.3s;
+        }
+        
+        .love-letter .heart:nth-child(3) {
+            left: 70%;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120px) scale(1);
+                opacity: 0;
+            }
+        }
+        /* ===== Gallery ===== */
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 60px;
+        }
+        
+        .tile {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 2px solid #ff4da6;
+            box-shadow: 0 0 15px #ff1493;
+        }
+        
+        .tile img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        
+        .tile:hover img {
+            transform: scale(1.1);
+        }
+        
+        .tile .quote {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(215, 214, 214, 0.85);
+            color: #b33346;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-family: 'Chewy', cursive;
+            font-size: 1.2rem;
+            text-align: bottom;
+            box-shadow: 0 0 20px #ff1493, 0 0 40px #ff69b4;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .tile:hover .quote {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        /* ===== Footer ===== */
+        
+        footer {
+            margin-top: 50px;
+            color: white;
+            text-shadow: 0 0 10px #ff1493;
+        }
+        /* ===== Responsive ===== */
+        
+        @media(max-width:1200px) {
+            .gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media(max-width:900px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media(max-width:600px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🌹 Petals -->
+    <div class="petal" style="left:15%;animation-duration:12s;">🌹</div>
+    <div class="petal" style="left:40%;animation-duration:15s;">🌹</div>
+    <div class="petal" style="left:70%;animation-duration:18s;">🌹</div>
+
+    <!-- ✨ Magical Sparkles -->
+    <div class="sparkle" style="left:5%; animation-duration:8s;"></div>
+    <div class="sparkle" style="left:20%; animation-duration:12s;"></div>
+    <div class="sparkle" style="left:35%; animation-duration:10s;"></div>
+    <div class="sparkle" style="left:50%; animation-duration:14s;"></div>
+    <div class="sparkle" style="left:65%; animation-duration:9s;"></div>
+    <div class="sparkle" style="left:80%; animation-duration:11s;"></div>
+    <div class="sparkle" style="left:90%; animation-duration:13s;"></div>
+
+    <div class="container">
+        <!-- Animated Background Behind Card -->
+        <div class="card-bg">
+            <div class="bg-sparkle" style="left:10%; animation-duration:6s;"></div>
+            <div class="bg-sparkle" style="left:30%; animation-duration:8s;"></div>
+            <div class="bg-sparkle" style="left:50%; animation-duration:5s;"></div>
+            <div class="bg-sparkle" style="left:70%; animation-duration:7s;"></div>
+            <div class="bg-sparkle" style="left:90%; animation-duration:9s;"></div>
+            <div class="bg-lightning"></div>
+        </div>
+
+        <div class="card">
+            <h1>Happy Valentines Day My King 👑❤️</h1>
+            <p>Since 2020, destiny wrote our magical love story.</p>
+            <p>You are my king, my heart, my eternal fairy tale.</p>
+
+            <div class="images">
+                <img src="husband.jpeg">
+                <img src="myphoto.jpeg">
+            </div>
+
+            <!-- Love Letter Popup -->
+            <div class="love-wrapper">
+                <button class="love-btn" id="openLetter"> Touch it Man😘💌</button>
+
+                <div class="love-letter" id="loveLetter">
+                    <button class="close-btn" id="closeLetter">×</button>
+                    <div class="heart">💖</div>
+                    <div class="heart">💖</div>
+                    <div class="heart">💖</div>
+
+                    <h2>My King</h2>
+                    <p>
+                        You are my greatest blessing, my strength, my forever destiny.<br> Every heartbeat whispers your name.<br> Forever yours, my love ❤️
+                    </p>
+                </div>
+            </div>
+
+            <!-- Gallery 12 photos -->
+            <div class="gallery">
+                <div class="tile"><img src="photo1.png">
+                    <div class="quote">You are my sunshine ☀</div>
+                </div>
+                <div class="tile"><img src="photo2.jpeg">
+                    <div class="quote">Forever starts with you 💍</div>
+                </div>
+                <div class="tile"><img src="photo3.jpeg">
+                    <div class="quote">Our love is magical ✨</div>
+                </div>
+                <div class="tile"><img src="photo4.jpeg">
+                    <div class="quote">My heart belongs to you ❤️</div>
+                </div>
+                <div class="tile"><img src="photo5.jpeg">
+                    <div class="quote">Together always 💕</div>
+                </div>
+                <div class="tile"><img src="photo6.jpeg">
+                    <div class="quote">My happily ever after 👑</div>
+                </div>
+                <div class="tile"><img src="photo7.jpeg">
+                    <div class="quote">With you, life glows 💖</div>
+                </div>
+                <div class="tile"><img src="photo8.jpeg">
+                    <div class="quote">My safe place 🏡</div>
+                </div>
+                <div class="tile"><img src="photo9.jpeg">
+                    <div class="quote">Love beyond time ⏳</div>
+                </div>
+                <div class="tile"><img src="photo10.jpeg">
+                    <div class="quote">You are my dream 🌙</div>
+                </div>
+                <div class="tile"><img src="photo11.jpeg">
+                    <div class="quote">My heart beats for you 💓</div>
+                </div>
+                <div class="tile"><img src="photo12.jpeg">
+                    <div class="quote">Forever and always 💘</div>
+                </div>
+            </div>
+
+            <footer> Made with infinite love ❤️ by Papa </footer>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" src="backgroundmusic.mp3" autoplay loop></audio>
+
+    <script>
+        const openBtn = document.getElementById('openLetter');
+        const closeBtn = document.getElementById('closeLetter');
+        const loveLetter = document.getElementById('loveLetter');
+        const bgMusic = document.getElementById('bgMusic');
+
+        // Popup letter
+        openBtn.addEventListener('click', () => {
+            loveLetter.classList.add('show');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            loveLetter.classList.remove('show');
+        });
+
+        // Autoplay music handling for browser restrictions
+        window.addEventListener('click', () => {
+            bgMusic.play().catch(() => { /* user interaction required */ });
+        });
+    </script>
+</body>
+
+</html>
